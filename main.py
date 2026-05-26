@@ -5,14 +5,23 @@ from src.loader import loadTree
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: main.exe <path_to_file>")
-        sys.exit(1)
+    if len(sys.argv) >= 2:
+        path = sys.argv[1]
+    else:
+        path = input("Enter path to file: ").strip()
+
     
-    root = loadTree(sys.argv[1])
-    if root:
-        checkPath(root)
-        drawTree(root)
+    try:
+        root = loadTree(path)
+    except FileNotFoundError:
+        print(f"Error: file '{path}' not found.")
+        input("Press Enter to exit...")
+        sys.exit(1)
+
+    checkPath(root)
+    print()
+
+    drawTree(root)
 
 if __name__ == "__main__":
     main()
