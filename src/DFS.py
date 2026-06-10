@@ -1,15 +1,17 @@
-
-def checkPath(node,favOnPath = None):
-
+def checkPath(node, favOnPath=None, results=None):
+    if node is None:
+        return results if results is not None else {}
+    
     if favOnPath is None:
         favOnPath = []
+    if results is None:
+        results = {}
 
     if node.isFavouriteFriend:
-        if favOnPath:
-            print(f"There are other friends on the path to {node.name}: {', '.join(favOnPath)}")
-        else:
-            print(f"There are no other favourite friends on the path to {node.name}")
+        results[node.name] = favOnPath.copy()
         favOnPath = favOnPath + [node.name]
-    
+
     for child in node.children:
-        checkPath(child,favOnPath)
+        checkPath(child, favOnPath, results)
+    
+    return results

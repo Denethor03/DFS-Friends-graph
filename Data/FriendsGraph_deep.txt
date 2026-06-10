@@ -1,0 +1,10 @@
+#name,isFavourite,parent
+home,0,None
+RootFav,1,home
+Child1,0,RootFav
+Child1Fav,1,Child1
+Child2,0,RootFav
+Leaf,0,Child2
+OtherBranch,0,home
+FavLeaf,1,OtherBranch
+DeepFav,1,FavLeaf
